@@ -75,17 +75,32 @@ except Exception as e:
         f"dengan aplikasi.\n\nDetail: {e}"
     )
 
-# =========================================================
-# LOAD DATA
-# =========================================================
-df = None
+# # =========================================================
+# # LOAD DATA
+# # =========================================================
+# df = None
 
-if uploaded_data is not None:
-    try:
-        df = pd.read_csv(uploaded_data)
-        st.sidebar.success(f"Dataset berhasil dimuat: {len(df)} baris")
-    except Exception as e:
-        st.sidebar.error(f"Gagal membaca CSV: {e}")
+# if uploaded_data is not None:
+#     try:
+#         df = pd.read_csv(uploaded_data)
+#         st.sidebar.success(f"Dataset berhasil dimuat: {len(df)} baris")
+#     except Exception as e:
+#         st.sidebar.error(f"Gagal membaca CSV: {e}")
+
+from pathlib import Path
+
+# =========================================================
+# LOAD DATASET
+# =========================================================
+BASE_DIR = Path(__file__).resolve().parent
+DATA_PATH = BASE_DIR / "penguins - penguins.csv"
+
+try:
+    df = pd.read_csv(DATA_PATH)
+    st.sidebar.success(f"Dataset berhasil dimuat: {len(df)} baris")
+except Exception as e:
+    st.sidebar.error(f"Gagal membaca dataset: {e}")
+    st.stop()
 
 # =========================================================
 # CHECK DATA

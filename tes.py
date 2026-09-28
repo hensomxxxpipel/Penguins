@@ -1,0 +1,7 @@
+import sklearn
+import joblib
+import sys
+
+print("Python:", sys.version)
+print("scikit-learn:", sklearn.__version__)
+print("joblib:", joblib.__version__)
